@@ -16,16 +16,15 @@ def process_txt():
                         process_dict[field[count]]=line.strip('\n')
                     if field[count]=='weight':
                         process_dict['weight']=int(line.strip('\n').strip(' lbs'))
-                    if field[count]=='image_name':
-                        name,_=each_file.split('.')
-                        img=name+'.jpeg'
-                        process_dict['image_name']=img
-                    count+=1    
+                    count+=1
+                name,_=each_file.split('.')
+                img=name+'.jpeg'
+                process_dict['image_name']=img    
             process_dict_list.append(process_dict)
     return process_dict_list
 
 if __name__ == "__main__":
-    url="http://localhost/upload"
+    url="http://localhost/fruits/"
     process_dict_list=process_txt()
     for process_dict in process_dict_list:
         response=requests.post(url,json=process_dict)
